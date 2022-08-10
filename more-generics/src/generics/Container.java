@@ -1,4 +1,4 @@
-package lesson1;
+package generics;
 
 public class Container<i1, i2> {
 

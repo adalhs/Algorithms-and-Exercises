@@ -1,4 +1,4 @@
-package lesson2;
+package generics_with_wildcards;
 
 public class Accountant extends Employee {
 
