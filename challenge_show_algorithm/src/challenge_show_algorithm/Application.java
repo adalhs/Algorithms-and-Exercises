@@ -10,33 +10,39 @@ public class Application {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		List<String> men = new ArrayList<>(Arrays.asList("Xavier", "Tyson", "Leo", "Kyland", "Javonny", "James", "Enzo",
-				"Domenick", "Derek", "David", "Danny", "Cinco", "Cashel", "Ben"));
+		List<String> men = new ArrayList<>(Arrays.asList("Tyson", "David", "Xavier", "Ben", "Kyland", "Leo", "Domenick",
+				"Cashel", "Cinco", "Enzo", "Javonny", "Derek", "James", "Danny"));
 
-		List<String> women = new ArrayList<>(Arrays.asList("Tiffany", "Tasha", "Angela", "Shannon", "Shan", "Sarah",
-				"Kyra", "Alyssa", "Justine", "Desi", "Cely", "Cayla", "Cashay", "Azah"));
+		List<String> women = new ArrayList<>(Arrays.asList("Angela", "Cayla", "Tasha", "Alyssa", "Azah", "Tiffany",
+				"Justine", "Kyra", "Desi", "Sarah", "Cely", "Cashay", "Shannon", "Shan"));
 
-		List<String> currentPartners = new ArrayList<>();
 		// Creating initial pairings
+		List<String> currentPartners = new ArrayList<>();
+		System.out.println("Welcome to the Challenge USA!\nThe initial team pairings are:");
 		for (int i = 0; i < men.size(); i++) {
 			currentPartners.add(men.get(i) + " and " + women.get(i));
+			Thread.sleep(1000);
+			System.out.println(currentPartners.get(i));
 		}
+		Thread.sleep(1000);
 
 		// Will hold past partners as the entryKey, along with a number as entryValue
-		// that will represent how many times that team has been paired together. That
-		// number will be "1" for every team here, as they will have only been paired
-		// once up to this point.
+		// that will represent how many times that team has been paired together.
 		HashMap<String, Integer> pastPartners = new HashMap<>();
+		// Adding POSSIBLE teams, entryValue of 0 as none of these would have been
+		// paired yet.
+		for (String man : men) {
+			for (String woman : women) {
+				pastPartners.put(man + " and " + woman, 0);
+			}
+		}
+
+		// Adding INITIAL teams, entryValue of 1 as these will have been paired once.
 		for (String team : currentPartners) {
 			pastPartners.put(team, 1);
 		}
 
-		// Will hold pairs that been put together before in case that it is not possible
-		// to put a person with someone they have never been with, the next best thing
-		// is to put the with the person they have been least amounts of time with (used
-		// in RandomSorter.sortRandomly()).
-		LinkedHashMap<String, Integer> pairedBeforeMap = new LinkedHashMap<>();
-
+		// Runs these while there is still more than one team.
 		while (currentPartners.size() > 1) {
 			// Runs elimination, eliminates losing pair from partners List as well pair's
 			// team mates' names from the men and women Lists
@@ -45,7 +51,7 @@ public class Application {
 			// Will stop sorting people after the elimination where currentPartners.size()
 			// will be dropped to one, as those are the winners.
 			if (currentPartners.size() > 1) {
-				RandomSorter.sortRandomly(pastPartners, currentPartners, pairedBeforeMap, men, women);
+				RandomSorter.sortRandomly(pastPartners, currentPartners, men, women);
 			}
 		}
 

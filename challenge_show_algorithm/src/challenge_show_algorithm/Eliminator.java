@@ -24,9 +24,9 @@ public class Eliminator {
 		// This will hold the two teams up for elimination
 		String[] eliminationPartners = { partners.get(randomTeam1), partners.get(randomTeam2) };
 
-		System.out.println("Elimination number " + eliminationRound + " - " + eliminationPartners[0] + " vs "
+		System.out.println("\nElimination number " + eliminationRound + " - " + eliminationPartners[0] + " vs "
 				+ eliminationPartners[1] + "\nRunning elimination...");
-		//Thread.sleep(7500);
+		Thread.sleep(2500);
 
 		// The code below will choose a random number (either 1 or 2) to be the winner.
 		// Then, if number 1 was chosen as the winner, that means number 2 must be the
@@ -48,11 +48,16 @@ public class Eliminator {
 		men.remove(
 				eliminationPartners[randomLosers - 1].substring(0, eliminationPartners[randomLosers - 1].indexOf(" ")));
 		women.remove(eliminationPartners[randomLosers - 1]
-				.substring(eliminationPartners[randomLosers - 1].indexOf(" ") + 5));
+				.substring(eliminationPartners[randomLosers - 1].lastIndexOf(" ") + 1));
 
 		// Removing losing pair from partners List
 		partners.remove(eliminationPartners[randomLosers - 1]);
-		//Thread.sleep(7500);
+		
+		if(partners.size() == 1) {
+			Thread.sleep(1000);
+			System.out.println(men.get(0) + " and " + women.get(0) + " win The Challenge USA!");
+		}
+		Thread.sleep(2500);
 		
 	}
 
