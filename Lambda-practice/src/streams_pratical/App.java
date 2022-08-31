@@ -15,7 +15,7 @@ public class App {
 
 		// Examples of Streams, they make heavy use of lambdas, but they don't all have
 		// to include lambdas. A "source" and a "terminal operation" are mandatory.
-		// "Intermediate operations" are optional..
+		// "Intermediate operations" are optional.
 
 		// STREAMS EXAMPLE 1
 		// Source: "IntStream.range(1, 10)"
