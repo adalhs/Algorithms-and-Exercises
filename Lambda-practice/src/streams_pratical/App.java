@@ -22,6 +22,7 @@ public class App {
 		// Intermediate Operation: None used.
 		// Terminal Operation: ".forEach((x)"
 		// NOTE: .range() is not inclusive of the last value
+		// Prints numbers from 1 to 9.
 		IntStream.range(1, 10).forEach((x) -> System.out.println(x));
 		System.out.println();
 
@@ -30,6 +31,7 @@ public class App {
 		// Source: "IntStream.range(1, 10)"
 		// Intermediate Operation: ".skip(5)" (skips the first 5 elements)
 		// Terminal Operation: ".forEach((x)"
+		// Prints numbers from 1 to 9, skipping the first 5.
 		IntStream.range(1, 10).skip(5).forEach((x) -> System.out.println(x));
 		System.out.println();
 
@@ -39,6 +41,7 @@ public class App {
 		// Intermediate operation: None used
 		// Terminal operation: ".sum()" (sums numbers in range (not inclusive of last
 		// number)
+		// Prints out the sum of numbers 1 through 4.
 		int val = IntStream.range(1, 5).sum();
 		System.out.println(val);
 		System.out.println();
@@ -51,6 +54,7 @@ public class App {
 		// NOTE: "ifPresent()" is there to prevent NullPointerExceptions, it is a good
 		// idea to put this when we are working with Streams like this because a
 		// particular element might be null.
+		// Sorts the stream, finds the first element, and if present, prints it.
 		Stream.of("Hello", "bottle", "Africa").sorted().findFirst().ifPresent((x) -> System.out.println(x));
 		System.out.println();
 
@@ -61,7 +65,7 @@ public class App {
 		// Intermediate operation 2: ".sorted()"
 		// Terminal operation: ".forEach()"
 		String[] items = { "car", "computer", "toothpaste", "box", "pencil", "tent", "door", "toy" };
-		// Will only pull the words that start with "t" and sort them
+		// Will pull words that start with the letter "t", sort them, and print them.
 		Stream.of(items).filter((x) -> x.startsWith("t")).sorted().forEach(x -> System.out.println(x + ", "));
 		System.out.println();
 
@@ -77,6 +81,8 @@ public class App {
 		// NOTE: "ifPresent()" is there to prevent NullPointerExceptions, it is a good
 		// idea to put this when we are working with Streams like this because a
 		// particular element might be null.
+		// "Maps" every number to be "number * number", finds the average of their sums,
+		// and if present, print it.
 		Arrays.stream(new int[] { 2, 4, 6, 8, 10 }).map((x) -> x * x).average().ifPresent(n -> System.out.println(n));
 		System.out.println();
 
@@ -104,6 +110,7 @@ public class App {
 		// Intermediate operation 2: ".filter((l) -> l.length() > 6)" (only gets lines
 		// with a character length over 6)
 		// Terminal operation: ".forEach()"
+		// Prints lines with a length over 6 and adds a comma behind.
 		lines.sorted().filter((l) -> l.length() > 6).forEach(x -> System.out.println(x + ", "));
 		// Always remember to do this
 		lines.close();
@@ -120,6 +127,7 @@ public class App {
 				.collect(Collectors.toList());
 		// Source: "words"
 		// Terminal operation: ".forEach()"
+		System.out.println(words);
 		words.forEach(x -> System.out.println(x + ", "));
 		System.out.println();
 

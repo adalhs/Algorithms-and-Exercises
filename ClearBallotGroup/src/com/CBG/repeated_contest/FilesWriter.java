@@ -4,19 +4,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-// Overwrites file without duplicates found
 public class FilesWriter {
 
-	public static void writeFile(String file, List<List<String>> valuesList) {
+	public static void writeFile(String file, List<List<String>> linesList) {
 		// True in the writer's boolean will append to the file, instead of overwriting
 		try (FileWriter writer = new FileWriter(file, true)) {
-			for (int i = 0; i < valuesList.size(); i++) {
-				for (int j = 0; j < valuesList.get(i).size(); j++) {
-					// If (i + 1) % lineLength = 0, then I reached end of line, must start new one.
-					if (j == valuesList.get(i).size() - 1) {
-						writer.write(valuesList.get(i).get(j) + "\n");
+			for (int i = 0; i < linesList.size(); i++) {
+				for (int j = 0; j < linesList.get(i).size(); j++) {
+					// If it's the last element in a line
+					if (j == linesList.get(i).size() - 1) {
+						writer.write(linesList.get(i).get(j) + "\n");
 					} else {
-						writer.write(valuesList.get(i).get(j) + ",");
+						writer.write(linesList.get(i).get(j) + ",");
 					}
 				}
 			}
